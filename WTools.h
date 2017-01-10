@@ -13,6 +13,7 @@ public :
 
     const QString& host() const;
     const QString& prefix() const;
+    int port() const;
 
     QNetworkAccessManager * netManager() const;
 
@@ -26,6 +27,7 @@ private:
 
     QString mHost;
     QString mPrefix;
+    int mPort;
 
 
 

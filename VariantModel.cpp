@@ -47,9 +47,38 @@ QVariant VariantModel::data(const QModelIndex &index, int role) const
 
 }
 
+QVariant VariantModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole)
+    {
+
+        if (orientation == Qt::Horizontal)
+        {
+
+            if (section < mFields.count())
+            {
+                return mFields.at(section);
+            }
+
+
+
+        }
+
+
+    }
+
+    return QVariant();
+
+}
+
 void VariantModel::setFields(const QStringList &fields)
 {
     mFields = fields;
+}
+
+void VariantModel::setQuery(const QString &query)
+{
+     mQuery = query;
 }
 
 void VariantModel::load()
@@ -68,6 +97,10 @@ void VariantModel::load()
 
 
     data["fields"] = fields;
+    data["query"] =  mQuery;
+
+
+
 
     QJsonDocument doc(data);
 

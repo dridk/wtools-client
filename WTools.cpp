@@ -22,6 +22,11 @@ const QString &WTools::prefix() const
     return mPrefix;
 }
 
+int WTools::port() const
+{
+    return mPort;
+}
+
 QNetworkAccessManager *WTools::netManager() const
 {
     return mNetManager;
@@ -32,7 +37,8 @@ WTools::WTools()
     :QObject(0)
 {
     mNetManager = new QNetworkAccessManager;
-    mHost   = "193.54.252.69";
+    mHost   = "med-laennec.univ-brest.fr";
     mPrefix = "/sacha/api/";
+    mPort   = 80;
 
 }

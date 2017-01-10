@@ -57,6 +57,7 @@ void FieldsModel::received(const QJsonDocument &json)
             {
                 QStandardItem * fieldItem = new QStandardItem();
                 fieldItem->setText(field.toObject().value("name").toString());
+                fieldItem->setToolTip(field.toObject().value("comment").toString());
                 fieldItem->setCheckable(true);
                 rootItem->appendRow(fieldItem);
 

@@ -17,12 +17,20 @@ SOURCES += main.cpp\
     WTools.cpp \
     Request.cpp \
     FieldsModel.cpp \
-    VariantModel.cpp
+    VariantModel.cpp \
+    LogicModel.cpp \
+    LogicView.cpp \
+    LogicDelegate.cpp \
+    ConditionWidget.cpp
 
 HEADERS  += MainWindow.h \
     WTools.h \
     Request.h \
     FieldsModel.h \
-    VariantModel.h
+    VariantModel.h \
+    LogicModel.h \
+    LogicView.h \
+    LogicDelegate.h \
+    ConditionWidget.h
 
 FORMS    += MainWindow.ui

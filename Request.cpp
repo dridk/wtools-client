@@ -42,6 +42,7 @@ QNetworkRequest Request::makeRequest(const QString &resource)
     url.setHost(WTools::i()->host());
     url.setPath(WTools::i()->prefix() + resource);
     url.setScheme("http");
+    url.setPort(WTools::i()->port());
 
     qDebug()<<url;
 
