@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->actionLoad, SIGNAL(triggered(bool)), mModel,SLOT(load()));
     connect(ui->actionLoad, SIGNAL(triggered(bool)), mLogicView,SLOT(load()));
+    connect(ui->actionExport, SIGNAL(triggered(bool)), this,SLOT(exportFile()));
 
     connect(ui->actionRun, SIGNAL(triggered(bool)), this,SLOT(load()));
 
@@ -42,6 +43,14 @@ void MainWindow::load()
     mVariantModel->setQuery(mLogicView->query());
     mVariantModel->load();
 
+
+}
+
+void MainWindow::exportFile()
+{
+        QString filename = QFileDialog::getSaveFileName(this,"export");
+        if (!filename.isEmpty())
+            mVariantModel->exportCsv(filename);
 
 }
 

@@ -1,6 +1,6 @@
 #include "LogicModel.h"
 #include <QDebug>
-
+#include "qfonticon.h"
 
 QHash<QString,Operator> LogicModel::sLogicOperator ={
     {"and",{"and", "&&", QObject::tr("all is true")}},
@@ -28,6 +28,9 @@ GroupItem::GroupItem(const QString &logicOperator)
     setCheckable(true);
 
     setDropEnabled(true);
+
+    setIcon(QFontIcon::icon(0xf1b3));
+
 }
 
 int GroupItem::type() const
@@ -63,6 +66,7 @@ void ConditionItem::setValue(const QString &key, const QString &compareOperator,
     setData(compareOperator, OperatorRole);
     setData(value, ValueRole);
     setText(QString("%1 %2 %3").arg(key).arg(compareOperator).arg(value.toString()));
+    setIcon(QFontIcon::icon(0xf1b2));
 }
 
 QString ConditionItem::key() const

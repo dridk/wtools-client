@@ -1,7 +1,7 @@
 #include "LogicDelegate.h"
 
 LogicDelegate::LogicDelegate(QObject *parent)
-    :QItemDelegate(parent)
+    :QStyledItemDelegate(parent)
 {
 
 
@@ -16,7 +16,6 @@ QWidget *LogicDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem
     if (lModel->itemFromIndex(index)->type() == LogicModel::LogicType)
     {
         QComboBox * box = new QComboBox(parent);
-        box->setMaximumWidth(200);
 
         for (Operator o : LogicModel::logicOperators())
             box->addItem(o.name.toUpper());
@@ -30,10 +29,12 @@ QWidget *LogicDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem
         ConditionItem * item = dynamic_cast<ConditionItem*>(lModel->itemFromIndex(index));
         ConditionWidget * box = new ConditionWidget(item->value().type(), parent);
         box->setFieldNames(mFieldNames);
+
         return box;
     }
 
-    return QItemDelegate::createEditor(parent, option, index);
+
+    return QStyledItemDelegate::createEditor(parent, option, index);
 
 }
 
@@ -60,7 +61,8 @@ void LogicDelegate::setEditorData(QWidget *editor, const QModelIndex &index) con
 
 
 
-    QItemDelegate::setEditorData(editor, index);
+
+    QStyledItemDelegate::setEditorData(editor, index);
 
 }
 
@@ -88,17 +90,27 @@ void LogicDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, con
         return;
     }
 
-    QItemDelegate::setModelData(editor,model, index);
+    QStyledItemDelegate::setModelData(editor,model, index);
 
 }
 
 QSize LogicDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
 
-    qDebug()<<"size ";
-    QSize size = QItemDelegate::sizeHint(option, index);
-    size.setHeight(30);
+
+    QSize size=QStyledItemDelegate::sizeHint(option, index);
+    size.setHeight(40);
+
     return size;
+
+
+
+}
+
+void LogicDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+
+    QStyledItemDelegate::updateEditorGeometry(editor, option,index);
 
 
 }
@@ -106,6 +118,9 @@ QSize LogicDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIn
 void LogicDelegate::setFieldNames(const QStringList &fields)
 {
     mFieldNames = fields;
+
+
+
 }
 
 

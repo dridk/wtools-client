@@ -22,7 +22,7 @@ public:
 
 public Q_SLOTS:
     void load();
-
+    void exportFile();
     void showQuery();
 
 private:

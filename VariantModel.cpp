@@ -78,7 +78,47 @@ void VariantModel::setFields(const QStringList &fields)
 
 void VariantModel::setQuery(const QString &query)
 {
-     mQuery = query;
+    mQuery = query;
+}
+
+void VariantModel::exportCsv(const QString &filename)
+{
+
+    QFile file(filename);
+    if (file.open(QIODevice::WriteOnly))
+    {
+        QTextStream stream(&file);
+
+        for (int r = 0; r < rowCount(); ++r)
+        {
+            QStringList list;
+            QStringList header;
+
+
+            for (int c=0; c<columnCount(); ++c)
+            {
+
+                if (r == 0)
+                    header.append(headerData(c,Qt::Horizontal,Qt::DisplayRole).toString());
+
+
+                list.append(data(index(r,c), Qt::DisplayRole).toString());
+            }
+
+            if (r == 0)
+                stream<<header.join(";")<<'\n';
+
+            stream<<list.join(";");
+            stream<<'\n';
+        }
+
+
+    }
+
+
+    file.close();
+
+
 }
 
 void VariantModel::load()

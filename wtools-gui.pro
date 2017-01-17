@@ -34,3 +34,8 @@ HEADERS  += MainWindow.h \
     ConditionWidget.h
 
 FORMS    += MainWindow.ui
+
+include("QFontIcon/QFontIcon.pri")
+
+RESOURCES += \
+    icons.qrc

@@ -43,6 +43,7 @@
    </attribute>
    <addaction name="actionLoad"/>
    <addaction name="actionRun"/>
+   <addaction name="actionExport"/>
    <addaction name="actionQuery"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -86,6 +87,14 @@
   <action name="actionQuery">
    <property name="text">
     <string>query</string>
+   </property>
+  </action>
+  <action name="actionExport">
+   <property name="text">
+    <string>export</string>
+   </property>
+   <property name="toolTip">
+    <string>Export</string>
    </property>
   </action>
  </widget>

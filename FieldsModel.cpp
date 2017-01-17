@@ -1,5 +1,7 @@
 #include "FieldsModel.h"
 #include <QDebug>
+#include <QApplication>
+#include "qfonticon.h"
 
 FieldsModel::FieldsModel(QObject *parent)
     :QStandardItemModel(parent)
@@ -52,6 +54,7 @@ void FieldsModel::received(const QJsonDocument &json)
             QString dbName = obj.toObject().value("name").toString();
             QStandardItem * rootItem = new QStandardItem;
             rootItem->setText(dbName);
+            rootItem->setIcon(QFontIcon::icon(0xf1c0, qApp->palette("QWidget").highlight().color()));
 
             for (QJsonValue field : obj.toObject().value("fields").toArray())
             {
@@ -59,6 +62,8 @@ void FieldsModel::received(const QJsonDocument &json)
                 fieldItem->setText(field.toObject().value("name").toString());
                 fieldItem->setToolTip(field.toObject().value("comment").toString());
                 fieldItem->setCheckable(true);
+                fieldItem->setIcon(QFontIcon::icon(0xf06e, qApp->palette("QWidget").text().color()));
+
                 rootItem->appendRow(fieldItem);
 
             }

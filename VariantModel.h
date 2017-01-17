@@ -11,14 +11,16 @@ class VariantModel : public QAbstractListModel
 public:
     VariantModel(QObject * parent = Q_NULLPTR);
 
-    int rowCount(const QModelIndex &parent) const;
-    int columnCount(const QModelIndex &parent) const;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;
 
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 
     void setFields(const QStringList& fields);
     void setQuery(const QString& query);
+
+    void exportCsv(const QString& filename);
 
 public Q_SLOTS:
     void load();
